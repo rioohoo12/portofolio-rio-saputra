@@ -183,5 +183,12 @@ const projects = [
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 2rem;
   color: var(--color-secondary);
-}
+  @media (max-width: 576px) {
+    .project-image {
+      height: auto;
+    }
+    .project-image img {
+      height: auto;
+    }
+  }
 </style>
