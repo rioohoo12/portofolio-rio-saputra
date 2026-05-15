@@ -191,4 +191,5 @@ const projects = [
       height: auto;
     }
   }
+}
 </style>
