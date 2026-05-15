@@ -15,7 +15,7 @@ onMounted(() => {
     <div class="container hero-container" :class="{ 'is-visible': isVisible }">
       <div class="hero-content">
         <h2 class="greeting">Hi, I'm</h2>
-        <h1 class="name">Rio Saputra Situmorang</h1>
+        <h1 class="name">Rio Saputra</h1>
         <h3 class="role">Front-End Developer & IT Support Enthusiast</h3>
         <p class="description">
           Passionate about building responsive and user-friendly web applications.

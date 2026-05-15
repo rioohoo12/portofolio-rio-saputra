@@ -5,6 +5,7 @@ import About from './components/About.vue';
 import Experience from './components/Experience.vue';
 import Projects from './components/Projects.vue';
 import Contact from './components/Contact.vue';
+import Footer from './components/Footer.vue';
 
 const isScrolled = ref(false);
 const activeSection = ref('home');
@@ -70,31 +71,7 @@ onUnmounted(() => {
       <Contact />
     </main>
     
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-glow"></div>
-      <div class="container footer-content">
-        <div class="footer-brand">
-          <a href="#home" class="logo logo-large">RS.</a>
-          <p class="footer-tagline">Building responsive and user-friendly web applications.</p>
-        </div>
-        
-        <div class="footer-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#experience">Organization</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <p>&copy; {{ new Date().getFullYear() }} Rio Saputra Situmorang. All rights reserved.</p>
-        <p class="built-with">
-          Designed & Built with <span class="heart">♥</span> using Vue.js & Vanilla CSS
-        </p>
-      </div>
-    </footer>
+    <Footer />
   </div>
 </template>
 
@@ -198,96 +175,6 @@ main {
   flex: 1;
 }
 
-/* Footer */
-.footer {
-  position: relative;
-  padding: 4rem 0 0 0;
-  background: var(--color-surface);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  margin-top: 6rem;
-  overflow: hidden;
-}
-
-.footer-glow {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 100px;
-  background: radial-gradient(ellipse at top, var(--color-primary-glow), transparent 70%);
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding-bottom: 3rem;
-}
-
-.footer-brand .logo-large {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  display: inline-block;
-}
-
-.footer-tagline {
-  color: var(--color-text-muted);
-  max-width: 300px;
-  line-height: 1.6;
-}
-
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.footer-links a {
-  color: var(--color-text-main);
-  font-weight: 500;
-  position: relative;
-}
-
-.footer-links a:hover {
-  color: var(--color-primary);
-}
-
-.footer-bottom {
-  padding: 1.5rem 2rem;
-  background: rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.footer-bottom p {
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.built-with {
-  opacity: 0.8;
-}
-
-.heart {
-  color: var(--color-secondary);
-  display: inline-block;
-  animation: heartbeat 1.5s infinite;
-}
-
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-}
-
 @media (max-width: 768px) {
   .desktop-nav {
     display: none;
@@ -295,16 +182,6 @@ main {
   
   .mobile-menu-btn {
     display: flex;
-  }
-  
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .footer-bottom {
-    flex-direction: column;
-    text-align: center;
   }
 }
 </style>
