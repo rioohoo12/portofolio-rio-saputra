@@ -8,7 +8,19 @@ import Contact from './components/Contact.vue';
 import Footer from './components/Footer.vue';
 
 const isScrolled = ref(false);
+const isMenuOpen = ref(false);
 const activeSection = ref('home');
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+  // Prevent body scroll when menu is open
+  document.body.style.overflow = isMenuOpen.value ? 'hidden' : '';
+};
+
+const closeMenu = () => {
+  isMenuOpen.value = false;
+  document.body.style.overflow = '';
+};
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 50;
@@ -53,12 +65,23 @@ onUnmounted(() => {
           <a href="#contact" :class="{ active: activeSection === 'contact' }">Contact</a>
         </nav>
         
-        <!-- Mobile menu button placeholder (could be expanded later) -->
-        <button class="mobile-menu-btn">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-btn" @click="toggleMenu" :class="{ 'menu-open': isMenuOpen }">
           <span></span>
           <span></span>
           <span></span>
         </button>
+
+        <!-- Mobile Nav Drawer -->
+        <div class="mobile-nav" :class="{ 'mobile-nav-active': isMenuOpen }">
+          <div class="mobile-nav-links">
+            <a href="#home" @click="closeMenu" :class="{ active: activeSection === 'home' }">Home</a>
+            <a href="#about" @click="closeMenu" :class="{ active: activeSection === 'about' }">About</a>
+            <a href="#experience" @click="closeMenu" :class="{ active: activeSection === 'experience' }">Organization</a>
+            <a href="#projects" @click="closeMenu" :class="{ active: activeSection === 'projects' }">Projects</a>
+            <a href="#contact" @click="closeMenu" :class="{ active: activeSection === 'contact' }">Contact</a>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -182,6 +205,68 @@ main {
   
   .mobile-menu-btn {
     display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 101;
+  }
+
+  .mobile-menu-btn span {
+    width: 30px;
+    height: 2px;
+    background-color: var(--color-text-main);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .mobile-menu-btn.menu-open span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .mobile-menu-btn.menu-open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-btn.menu-open span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100vh;
+    background: rgba(15, 17, 21, 0.95);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+  }
+
+  .mobile-nav-active {
+    right: 0;
+  }
+
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .mobile-nav-links a {
+    font-size: 1.8rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-text-muted);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav-links a:hover,
+  .mobile-nav-links a.active {
+    color: var(--color-primary);
+    transform: scale(1.1);
   }
 }
 </style>
