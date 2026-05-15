@@ -1,6 +1,6 @@
 <script setup>
 const frontendSkills = [
-  'HTML5', 'CSS3', 'JavaScript', 'Vue.js', 'React.js', 
+  'HTML', 'CSS', 'JavaScript', 'Vue.js', 'React.js',
   'Tailwind CSS', 'Responsive Web Design', 'REST API Integration', 'Git & GitHub'
 ];
 

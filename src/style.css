@@ -94,6 +94,43 @@ button {
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
 }
 
+/* Hero Section Styling */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.hero img {
+  max-width: 100%;
+  height: auto;
+  flex: 1 1 150px;
+  border-radius: 0.5rem;
+  object-fit: contain;
+}
+
+/* Responsive adjustments for Hero */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+  }
+  .hero img {
+    flex: 1 1 auto;
+    width: 80%;
+  }
+}
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--glass-border);
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
 .glass-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
