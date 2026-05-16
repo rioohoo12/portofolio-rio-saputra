@@ -1,11 +1,16 @@
 <script setup>
+const getAssetUrl = (name) => {
+  const fileName = name.split('/').pop();
+  return new URL(`../assets/${fileName}`, import.meta.url).href;
+};
+
 const experiences = [
   {
     id: 1,
     role: 'Staff of Event Division (Class of 2023)',
     company: 'HIMA Faculty of Technology Information',
     duration: '2023 - 2027',
-    images: ['/src/assets/staff-2023.jpeg'],
+    images: ['staff-2023.jpeg'],
     description: [
       'Contributed to the planning and coordination of various organizational events and programs within a large team of over 100 members.',
       'Assisted in managing logistics, schedules, and on-site execution to ensure successful event outcomes for the 2023 cohort.',
@@ -17,7 +22,7 @@ const experiences = [
     role: 'Event Division Member',
     company: 'HIMA Faculty of Technology Information',
     duration: '2025 - 2027',
-    images: ['/src/assets/hima-1.jpeg', '/src/assets/hima-2.jpeg', '/src/assets/hima-3.jpeg'],
+    images: ['hima-1.jpeg', 'hima-2.jpeg', 'hima-3.jpeg'],
     description: [
       'Planned and managed faculty-wide technology events, including the "Ekskursi Trans Studio Bandung" program.',
       'Led event execution and public speaking roles, ensuring clear communication and program flow.',
@@ -39,13 +44,12 @@ const experiences = [
           <div class="timeline-content">
             <div class="timeline-header">
               <h3>{{ exp.role }}</h3>
-              <span class="duration">{{ exp.duration }}</span>
             </div>
             <h4 class="company">{{ exp.company }}</h4>
             
             <div v-if="exp.images && exp.images.length" class="experience-gallery">
               <div v-for="(img, idx) in exp.images" :key="idx" class="experience-image-container">
-                <img :src="img" :alt="exp.role" class="experience-image" />
+                <img :src="getAssetUrl(img)" :alt="exp.role" class="experience-image" />
               </div>
             </div>
 

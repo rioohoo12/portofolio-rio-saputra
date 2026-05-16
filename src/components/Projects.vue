@@ -1,11 +1,17 @@
 <script setup>
+const getAssetUrl = (name) => {
+  // Menangani input path lengkap atau hanya nama file
+  const fileName = name.split('/').pop();
+  return new URL(`../assets/${fileName}`, import.meta.url).href;
+};
+
 const projects = [
   {
     id: 1,
     title: 'Rent Car Web',
     description: 'A comprehensive car rental platform developed as a final project for Web 2, utilizing React.js for the frontend, Nest.js for the backend, and PostgreSQL for the database.',
     tags: ['React.js', 'Nest.js', 'PostgreSQL'],
-    images: ['/src/assets/rent-car.png'],
+    images: ['rent-car.png'],
     link: '#'
   },
   {
@@ -13,7 +19,7 @@ const projects = [
     title: 'Chairman of the Alumni Homecoming Event',
     description: 'Served as the Chairman of the Committee for the Alumni Homecoming event, which focused on strengthening professional and personal bonds among the alumni community.',
     tags: ['Leadership', 'Event Planning', 'Coordination'],
-    images: ['/src/assets/123.jpeg', '/src/assets/pp.jpeg'],
+    images: ['123.jpeg', 'pp.jpeg'],
     link: '#'
   },
   {
@@ -21,7 +27,7 @@ const projects = [
     title: 'Sabbath School Speaker',
     description: 'Selected by the Sabbath School staff to present educational materials, I accepted this role to refine my public speaking skills and build confidence in addressing large audiences.',
     tags: ['Public Speaking', 'Leadership', 'Communication'],
-    video: '/src/assets/sabbath-speaker.mp4',
+    video: 'sabbath-speaker.mp4',
     images: [],
     link: '#'
   },
@@ -30,7 +36,7 @@ const projects = [
     title: "2nd Place in the 2026 'Discus 3.0' Debate",
     description: 'Representing the Faculty of Information Technology, our team of three secured 2nd place. This achievement honed our collaboration skills, goal-oriented leadership, and effective communication.',
     tags: ['Debate', 'Teamwork', 'Public Speaking'],
-    images: ['/src/assets/234.jpeg', '/src/assets/345.jpeg'],
+    images: ['234.jpeg', '345.jpeg'],
     link: '#'
   },
   {
@@ -38,7 +44,7 @@ const projects = [
     title: 'Undergraduate Thesis Research',
     description: 'Developed a comprehensive system architecture using Vue.js for the frontend and Laravel for the backend as part of my undergraduate thesis research.',
     tags: ['Vue.js', 'Laravel', 'System Design'],
-    images: ['/src/assets/jurnal.png'],
+    images: ['jurnal.png'],
     link: '#'
   }
 ];
@@ -53,11 +59,11 @@ const projects = [
         <div v-for="project in projects" :key="project.id" class="project-card glass-card">
           <div class="project-media-container" :class="{ 'multi-image': project.images && project.images.length > 1 }">
             <div v-if="project.video" class="project-video-wrapper">
-              <video :src="project.video" controls class="project-video"></video>
+              <video :src="getAssetUrl(project.video)" controls playsinline class="project-video"></video>
             </div>
             <template v-else>
               <div v-for="(img, idx) in project.images" :key="idx" class="project-image">
-                <img :src="img" :alt="project.title">
+                <img :src="getAssetUrl(img)" :alt="project.title">
                 <div class="project-overlay">
                   <a :href="project.link" class="btn-primary" target="_blank">View Project</a>
                 </div>
@@ -187,10 +193,10 @@ const projects = [
 
 @media (max-width: 576px) {
   .project-image {
-    height: auto;
+    height: 200px;
   }
-  .project-image img {
-    height: auto;
+  .project-media-container.multi-image {
+    grid-template-columns: 1fr;
   }
 }
 </style>
